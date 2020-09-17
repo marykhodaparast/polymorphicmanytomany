@@ -26,3 +26,20 @@ Route::get('/create', function () {
     $tag2 = Tag::findOrFail(2);
     $video->tags()->save($tag2);
 });
+Route::get('/read',function(){
+   $post = Post::findOrFail(1);
+   foreach($post->tags as $tag){
+       echo $tag;
+   }
+});
+Route::get('/update',function(){
+    // $post = Post::findOrFail(1);
+    // foreach($post->tags as $tag){
+    //     return $tag->whereName('Javascript')->update(['name' => 'Updated JS']);
+    // }
+    $post = Post::findOrFail(1);
+    $tag = Tag::findOrFail(3);
+    //$post->tags()->save($tag);
+    //$post->tags()->attach($tag);
+    $post->tags()->sync([1,2]);
+ });
