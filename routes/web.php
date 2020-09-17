@@ -43,3 +43,10 @@ Route::get('/update',function(){
     //$post->tags()->attach($tag);
     $post->tags()->sync([1,2]);
  });
+ Route::get('/delete',function(){
+    $post = Post::findOrFail(1);
+    foreach($post->tags as $tag){
+        $tag->whereId(3)->delete();
+    }
+
+ });
